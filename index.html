@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="経験を記録し、自分らしさを見つける自己分析ノート">
+  <title>Announce Lab | 自分を知る、言葉にする</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <a class="brand" href="#">
+        <span class="logo">AL</span>
+        <span><strong>Announce Lab</strong><small>自分を知る。言葉にする。</small></span>
+      </a>
+
+      <nav>
+        <button class="nav active" data-view="home">⌂ ホーム</button>
+        <button class="nav" data-view="records">▤ 経験の記録</button>
+        <button class="nav" data-view="analysis">✧ 自己分析</button>
+      </nav>
+
+      <div class="sidebar-note">
+        <strong>小さな経験も、あなたらしさ。</strong>
+        <p>何気ない日常の気づきも、自分を知るヒントになる。</p>
+      </div>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">YOUR STORY, YOUR WORDS</p>
+          <h1 id="page-title">おかえりなさい。</h1>
+        </div>
+        <button class="primary" id="add-button">＋ 経験を記録する</button>
+      </header>
+
+      <section class="view active" id="home">
+        <div class="hero">
+          <span class="pill">YOUR JOURNEY STARTS HERE</span>
+          <h2>あなたの経験の中に、<br>あなたらしさのヒントがある。</h2>
+          <p>うれしかったこと、悔しかったこと、何気なく続けていること。<br>まずは、昨日の自分を見つめるところから。</p>
+          <button class="light-button" id="hero-add">今日の経験を書いてみる →</button>
+        </div>
+
+        <div class="section-title">
+          <div><p class="eyebrow">YOUR JOURNEY</p><h2>経験の積み重ね</h2></div>
+        </div>
+
+        <div class="stats">
+          <article class="stat">
+            <span class="stat-icon">▤</span>
+            <div><p>記録した経験</p><strong id="total-count">0</strong> 件</div>
+          </article>
+          <article class="stat">
+            <span class="stat-icon peach">♡</span>
+            <div><p>気づきを書いた経験</p><strong id="insight-count">0</strong> 件</div>
+          </article>
+          <article class="stat">
+            <span class="stat-icon green">↗</span>
+            <div><p>今月の記録</p><strong id="month-count">0</strong> 件</div>
+          </article>
+        </div>
+
+        <div class="section-title">
+          <div><p class="eyebrow">RECENT NOTES</p><h2>最近の記録</h2></div>
+          <button class="text-button" data-open="records">すべて見る →</button>
+        </div>
+        <div id="recent-list" class="record-list"></div>
+        <div id="home-empty" class="empty">
+          <div class="empty-icon">✎</div>
+          <h3>最初の1件を残してみよう</h3>
+          <p>すごい経験でなくても大丈夫。<br>心が動いた瞬間が、自己分析の出発点です。</p>
+          <button class="primary" id="first-add">＋ 最初の経験を記録する</button>
+        </div>
+      </section>
+
+      <section class="view" id="records">
+        <div class="section-title page-heading">
+          <div><p class="eyebrow">YOUR JOURNAL</p><h2>経験の記録</h2>
+            <p class="description">日常の出来事を、自分を知る材料にしよう。</p>
+          </div>
+          <button class="primary" id="add-from-records">＋ 新しい記録</button>
+        </div>
+
+        <div class="toolbar">
+          <input id="search" type="search" placeholder="記録をキーワードで検索">
+          <select id="filter">
+            <option value="">すべてのカテゴリー</option>
+            <option>挑戦</option>
+            <option>失敗・悔しさ</option>
+            <option>うれしかったこと</option>
+            <option>人との関わり</option>
+            <option>日常の気づき</option>
+            <option>その他</option>
+          </select>
+        </div>
+        <div id="all-list" class="record-list"></div>
+        <div id="records-empty" class="empty hidden">
+          <h3>記録が見つかりません</h3>
+          <p>検索条件を変えてみてください。</p>
+        </div>
+      </section>
+
+      <section class="view" id="analysis">
+        <div class="section-title page-heading">
+          <div><p class="eyebrow">SELF DISCOVERY</p><h2>自己分析</h2>
+            <p class="description">記録を振り返り、自分の価値観を言葉にしよう。</p>
+          </div>
+        </div>
+
+        <div class="analysis-intro">
+          <strong>答えを急がなくていい。</strong>
+          <p>自己分析は、正解を当てることではなく、自分への理解を深めること。</p>
+        </div>
+
+        <div class="reflection-grid">
+          <article class="reflection">
+            <span>01 / FEELINGS</span>
+            <h3>心が動いた瞬間</h3>
+            <p>何がうれしかった？ 何が悔しかった？</p>
+            <textarea id="reflect-feeling" placeholder="例：仲間の努力を認められてうれしかった。"></textarea>
+          </article>
+          <article class="reflection">
+            <span>02 / ACTIONS</span>
+            <h3>自分らしい行動</h3>
+            <p>意識しなくても、つい取る行動は？</p>
+            <textarea id="reflect-action" placeholder="例：話し合いで発言が少ない人に声をかける。"></textarea>
+          </article>
+          <article class="reflection">
+            <span>03 / VALUES</span>
+            <h3>大切にしたい価値観</h3>
+            <p>どんなときに自分らしいと感じる？</p>
+            <textarea id="reflect-values" placeholder="例：相手の立場を想像して、誠実に伝えられたとき。"></textarea>
+          </article>
+        </div>
+        <div class="save-row">
+          <span id="save-status">振り返りはこのブラウザに保存されます。</span>
+          <button class="primary" id="save-reflections">振り返りを保存</button>
+        </div>
+
+        <div class="section-title"><div><p class="eyebrow">YOUR EVIDENCE</p><h2>経験から振り返る</h2></div></div>
+        <div id="analysis-list" class="record-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="record-dialog">
+    <form id="record-form">
+      <div class="dialog-heading">
+        <div><p class="eyebrow">YOUR STORY</p><h2 id="dialog-title">経験を記録する</h2></div>
+        <button type="button" id="close-dialog" class="close">×</button>
+      </div>
+      <input type="hidden" id="record-id">
+
+      <label for="title">タイトル <span>必須</span></label>
+      <input id="title" maxlength="80" required placeholder="例：友人の相談に乗った日">
+
+      <div class="form-row">
+        <div><label for="date">日付</label><input id="date" type="date" required></div>
+        <div><label for="category">カテゴリー</label>
+          <select id="category">
+            <option>挑戦</option><option>失敗・悔しさ</option>
+            <option>うれしかったこと</option><option>人との関わり</option>
+            <option>日常の気づき</option><option>その他</option>
+          </select>
+        </div>
+      </div>
+
+      <label for="event">何があった？ <span>必須</span></label>
+      <textarea id="event" rows="3" required placeholder="できごとを、まずは事実ベースで書こう。"></textarea>
+
+      <label for="feeling">そのとき、何を感じた？</label>
+      <textarea id="feeling" rows="2" placeholder="うれしい、悔しい、不安、誇らしい……"></textarea>
+
+      <label for="action">自分はどう行動した？</label>
+      <textarea id="action" rows="2" placeholder="自分が考えたこと、選んだこと、実際にしたこと。"></textarea>
+
+      <label for="learning">気づき・学び</label>
+      <textarea id="learning" rows="2" placeholder="この経験から、自分について気づいたことは？"></textarea>
+
+      <div class="dialog-actions">
+        <button type="button" id="cancel-dialog" class="secondary">キャンセル</button>
+        <button type="submit" class="primary">記録を保存する</button>
+      </div>
+      <p class="privacy-note">記録はこのブラウザ内に保存されます。</p>
+    </form>
+  </dialog>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
